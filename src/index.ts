@@ -4,7 +4,7 @@ import { GraphQLServer, Options } from 'graphql-yoga'
 import cookieParser from 'cookie-parser'
 import { verify } from 'jsonwebtoken'
 
-import { Request, Response } from './utils/types'
+import { Request } from './utils/types'
 
 import * as resolvers from './resolvers'
 import db from './lib/db'
@@ -17,6 +17,8 @@ const server = new GraphQLServer({
 })
 
 server.express.use(cookieParser())
+
+// verify the cookie token on every request
 server.express.use((req: Request, res, next) => {
   if (req.cookies.token) {
     const { userId } = verify(req.cookies.token, process.env.APP_SECRET) as {
@@ -28,7 +30,9 @@ server.express.use((req: Request, res, next) => {
 
   return next()
 })
-server.express.use(async (req: Request, res: Response, next) => {
+
+// populate `currentUser`, if available, on every request
+server.express.use(async (req: Request, res, next) => {
   if (!req.userId) {
     return next()
   }
@@ -47,9 +51,12 @@ server.express.use(async (req: Request, res: Response, next) => {
 
 const options: Options = {
   cors: { credentials: true },
-  playground: '/graphql',
+  endpoint: '/graphql',
+  playground: '/playground',
 }
-server.start(options, ({ port }) =>
+server.start(options, ({ port, endpoint }) =>
   // eslint-disable-next-line no-console
-  console.log(`🚀 GraphQL Server running on http://localhost:${port}`)
+  console.log(
+    `🚀 GraphQL server running on http://localhost:${port}${endpoint}`
+  )
 )

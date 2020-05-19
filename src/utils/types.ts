@@ -1,4 +1,4 @@
-import { Request as BaseRequest, Response as BaseResponse } from 'express'
+import { Request as BaseRequest } from 'express'
 import { User } from '../resolvers/types'
 
 export interface Request extends BaseRequest {
@@ -6,5 +6,3 @@ export interface Request extends BaseRequest {
   userId: string
   currentUser: User
 }
-
-export type Response = BaseResponse

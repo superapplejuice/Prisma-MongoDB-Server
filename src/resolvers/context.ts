@@ -1,5 +1,7 @@
+import { Response } from 'express'
+
 import { Prisma } from '../generated/prisma'
-import { Request, Response } from '../utils/types'
+import { Request } from '../utils/types'
 
 export type Context = {
   db: Prisma

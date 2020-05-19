@@ -42,8 +42,12 @@ MONGO_URI=mongodb+srv://<db_user_here>:<db_user_password>@cluster01.mongodb.net/
 APP_SECRET=<some_secret_key>
 ```
 
+**Note**, any changes to the `endpoint: '/graphql'` server options at the root `index.ts` or `PORT` in the `.env` file needs to be reflected in the `.graphqlconfig.yml` file.
+
 3. Run `yarn codegen` to create the Docker container, and generate the Prisma schema and GraphQL resolver types
 
-4. ???
+4. Run `yarn dev` to start the server. A message in the terminal will tell you where the GraphQL server endpoint is running.
 
-5. Profit
+5. ???
+
+6. Profit
