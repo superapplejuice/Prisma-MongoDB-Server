@@ -1,0 +1,28 @@
+# import * from '../generated/prisma.graphql'
+
+# mutation inputs
+input createItemInput {
+  name: String!
+  description: String!
+  price: Int!
+  images: [Upload!]!
+}
+
+input updateItemInput {
+  id: ID!
+  name: String
+  description: String
+  price: Int
+  images: [Upload!]
+}
+
+# query inputs
+input fetchItemsInput {
+  where: ItemWhereInput
+  orderBy: ItemOrderByInput
+  skip: Int
+  after: String
+  before: String
+  first: Int
+  last: Int
+}

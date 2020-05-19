@@ -1,0 +1,33 @@
+# import * from '../generated/prisma.graphql'
+# import * from './item-schema.graphql'
+# import * from './user-schema.graphql'
+
+# scalars
+scalar Upload
+
+# queries
+type Query {
+  # items
+  fetchItems(data: fetchItemsInput): [Item]!
+  fetchItem(id: ID!): Item!
+  # users
+  fetchCurrentUser: User
+  fetchUser(id: ID!): User
+  # cart
+  fetchCart: [CartItem]!
+}
+
+# mutations
+type Mutation {
+  # items
+  createItem(data: createItemInput!): Item!
+  updateItem(data: updateItemInput!): Item!
+  deleteItem(id: ID!): Item
+  # user
+  registerUser(data: registerUserInput!): User!
+  loginUser(data: loginUserInput!): User!
+  # cart
+  addToCart(id: ID!): CartItem!
+  removeFromCart(id: ID!): CartItem
+  clearCart: [CartItem]!
+}

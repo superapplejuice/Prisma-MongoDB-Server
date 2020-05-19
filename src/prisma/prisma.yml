@@ -1,0 +1,9 @@
+endpoint: ${env:PRISMA_ENDPOINT}
+datamodel: datamodel.prisma
+secret: ${env:PRISMA_SECRET}
+databaseType: document
+
+hooks:
+  post-deploy:
+    - graphql get-schema -p prisma
+    - graphql codegen

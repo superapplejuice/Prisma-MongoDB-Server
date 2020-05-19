@@ -1,0 +1,26 @@
+type User {
+  id: ID! @id
+  username: String! @unique
+  email: String! @unique
+  password: String!
+  joined: DateTime! @createdAt
+  items: [Item]! @relation(link: INLINE)
+  cart: [CartItem!]! @relation(link: INLINE)
+}
+
+type Item {
+  id: ID! @id
+  name: String!
+  description: String!
+  price: Int!
+  images: [String!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  user: User
+}
+
+type CartItem {
+  id: ID! @id
+  item: Item! @relation(link: INLINE)
+  user: User!
+}

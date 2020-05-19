@@ -1,0 +1,57 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint"
+  ],
+  "ignorePatterns": [".next", "node_modules", "next.config.*", "*.d.ts"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "no-console": "error",
+    "no-empty-function": "off",
+    "no-mixed-spaces-and-tabs": "error",
+    "no-trailing-spaces": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "jsxSingleQuote": false,
+        "semi": false,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "arrowParens": "avoid"
+      }
+    ],
+    "require-await": "error",
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "never",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "spaced-comment": ["error", "always"]
+  }
+}

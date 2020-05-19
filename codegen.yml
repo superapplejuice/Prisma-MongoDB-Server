@@ -1,0 +1,14 @@
+overwrite: true
+schema: './src/schemas/schema.graphql'
+documents: null
+config:
+  skipTypename: false
+  contextType: './context#Context'
+generates:
+  src/resolvers/types.ts:
+    plugins:
+      - typescript
+      - typescript-resolvers
+hooks:
+  afterAllFileWrite:
+    - prettier --write

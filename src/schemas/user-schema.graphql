@@ -1,0 +1,20 @@
+# import * from '../generated/prisma.graphql'
+
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  joined: DateTime!
+}
+
+# mutation inputs
+input registerUserInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input loginUserInput {
+  email: String!
+  password: String!
+}
