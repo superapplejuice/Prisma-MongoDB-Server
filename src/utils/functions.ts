@@ -1,3 +1,5 @@
+import { Alert } from '../resolvers/types'
+
 export const uploadImages = async (uploadFiles: File[]): Promise<string[]> =>
   await Promise.all(
     uploadFiles.map(async file => {
@@ -14,3 +16,8 @@ export const uploadImages = async (uploadFiles: File[]): Promise<string[]> =>
       return uploadData.secure_url as string
     })
   )
+
+export const createAlert = (error: boolean, message: string): Alert => ({
+  error,
+  message,
+})

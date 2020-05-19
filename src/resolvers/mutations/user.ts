@@ -9,7 +9,9 @@ import {
   INVALID_USERNAME,
   INVALID_PASSWORD,
   WRONG_CREDENTIALS,
+  REQUIRE_AUTH,
 } from '../../utils/messages'
+import { createAlert } from '../../utils/functions'
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
@@ -82,6 +84,18 @@ const UserMutations: MutationResolvers = {
       ctx.response.cookie('token', token, cookieOptions)
 
       return existingEmail
+    },
+  },
+  logoutUser: {
+    fragment: '',
+    resolve: async (parent, args, ctx, info) => {
+      if (!ctx.request.userId) {
+        throw new Error(REQUIRE_AUTH)
+      }
+
+      ctx.response.clearCookie('token')
+
+      return createAlert(false, 'Logged out successfully!')
     },
   },
 }

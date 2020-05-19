@@ -40,6 +40,12 @@ export type AggregateUser = {
   count: Scalars['Int']
 }
 
+export type Alert = {
+  __typename?: 'Alert'
+  error: Scalars['Boolean']
+  message: Scalars['String']
+}
+
 export type BatchPayload = {
   __typename?: 'BatchPayload'
   /** The number of nodes that have been affected by the Batch operation. */
@@ -663,6 +669,7 @@ export type Mutation = {
   deleteManyUsers: BatchPayload
   deleteUser?: Maybe<User>
   loginUser: User
+  logoutUser: Alert
   registerUser: User
   removeFromCart?: Maybe<CartItem>
   updateCartItem?: Maybe<CartItem>
@@ -912,10 +919,33 @@ export type UpdateItemInput = {
 
 export type User = {
   __typename?: 'User'
+  cart?: Maybe<Array<CartItem>>
   email: Scalars['String']
   id: Scalars['ID']
+  items?: Maybe<Array<Item>>
   joined: Scalars['DateTime']
+  password: Scalars['String']
   username: Scalars['String']
+}
+
+export type UserCartArgs = {
+  where?: Maybe<CartItemWhereInput>
+  orderBy?: Maybe<CartItemOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
+}
+
+export type UserItemsArgs = {
+  where?: Maybe<ItemWhereInput>
+  orderBy?: Maybe<ItemOrderByInput>
+  skip?: Maybe<Scalars['Int']>
+  after?: Maybe<Scalars['String']>
+  before?: Maybe<Scalars['String']>
+  first?: Maybe<Scalars['Int']>
+  last?: Maybe<Scalars['Int']>
 }
 
 /** A connection to a list of items. */
@@ -1297,13 +1327,13 @@ export type ResolversTypes = {
   ItemWhereInput: ItemWhereInput
   UserWhereInput: UserWhereInput
   CartItemOrderByInput: CartItemOrderByInput
+  ItemOrderByInput: ItemOrderByInput
   CartItemConnection: ResolverTypeWrapper<CartItemConnection>
   PageInfo: ResolverTypeWrapper<PageInfo>
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   CartItemEdge: ResolverTypeWrapper<CartItemEdge>
   AggregateCartItem: ResolverTypeWrapper<AggregateCartItem>
   fetchItemsInput: FetchItemsInput
-  ItemOrderByInput: ItemOrderByInput
   ItemWhereUniqueInput: ItemWhereUniqueInput
   ItemConnection: ResolverTypeWrapper<ItemConnection>
   ItemEdge: ResolverTypeWrapper<ItemEdge>
@@ -1332,6 +1362,7 @@ export type ResolversTypes = {
   BatchPayload: ResolverTypeWrapper<BatchPayload>
   Long: ResolverTypeWrapper<Scalars['Long']>
   loginUserInput: LoginUserInput
+  Alert: ResolverTypeWrapper<Alert>
   registerUserInput: RegisterUserInput
   CartItemUpdateInput: CartItemUpdateInput
   ItemUpdateOneRequiredInput: ItemUpdateOneRequiredInput
@@ -1379,13 +1410,13 @@ export type ResolversParentTypes = {
   ItemWhereInput: ItemWhereInput
   UserWhereInput: UserWhereInput
   CartItemOrderByInput: CartItemOrderByInput
+  ItemOrderByInput: ItemOrderByInput
   CartItemConnection: CartItemConnection
   PageInfo: PageInfo
   Boolean: Scalars['Boolean']
   CartItemEdge: CartItemEdge
   AggregateCartItem: AggregateCartItem
   fetchItemsInput: FetchItemsInput
-  ItemOrderByInput: ItemOrderByInput
   ItemWhereUniqueInput: ItemWhereUniqueInput
   ItemConnection: ItemConnection
   ItemEdge: ItemEdge
@@ -1414,6 +1445,7 @@ export type ResolversParentTypes = {
   BatchPayload: BatchPayload
   Long: Scalars['Long']
   loginUserInput: LoginUserInput
+  Alert: Alert
   registerUserInput: RegisterUserInput
   CartItemUpdateInput: CartItemUpdateInput
   ItemUpdateOneRequiredInput: ItemUpdateOneRequiredInput
@@ -1466,6 +1498,15 @@ export type AggregateUserResolvers<
   ParentType extends ResolversParentTypes['AggregateUser'] = ResolversParentTypes['AggregateUser']
 > = {
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  __isTypeOf?: isTypeOfResolverFn<ParentType>
+}
+
+export type AlertResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes['Alert'] = ResolversParentTypes['Alert']
+> = {
+  error?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>
+  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -1637,6 +1678,7 @@ export type MutationResolvers<
     ContextType,
     RequireFields<MutationLoginUserArgs, 'data'>
   >
+  logoutUser?: Resolver<ResolversTypes['Alert'], ParentType, ContextType>
   registerUser?: Resolver<
     ResolversTypes['User'],
     ParentType,
@@ -1825,9 +1867,22 @@ export type UserResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
 > = {
+  cart?: Resolver<
+    Maybe<Array<ResolversTypes['CartItem']>>,
+    ParentType,
+    ContextType,
+    RequireFields<UserCartArgs, never>
+  >
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
+  items?: Resolver<
+    Maybe<Array<ResolversTypes['Item']>>,
+    ParentType,
+    ContextType,
+    RequireFields<UserItemsArgs, never>
+  >
   joined?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
@@ -1859,6 +1914,7 @@ export type Resolvers<ContextType = Context> = {
   AggregateCartItem?: AggregateCartItemResolvers<ContextType>
   AggregateItem?: AggregateItemResolvers<ContextType>
   AggregateUser?: AggregateUserResolvers<ContextType>
+  Alert?: AlertResolvers<ContextType>
   BatchPayload?: BatchPayloadResolvers<ContextType>
   CartItem?: CartItemResolvers<ContextType>
   CartItemConnection?: CartItemConnectionResolvers<ContextType>

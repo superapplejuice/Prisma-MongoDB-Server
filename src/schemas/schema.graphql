@@ -5,6 +5,19 @@
 # scalars
 scalar Upload
 
+# types
+type User {
+  id: ID!
+  username: String!
+  email: String!
+  joined: DateTime!
+}
+
+type Alert {
+  error: Boolean!
+  message: String!
+}
+
 # queries
 type Query {
   # items
@@ -26,6 +39,7 @@ type Mutation {
   # user
   registerUser(data: registerUserInput!): User!
   loginUser(data: loginUserInput!): User!
+  logoutUser: Alert!
   # cart
   addToCart(id: ID!): CartItem!
   removeFromCart(id: ID!): CartItem
