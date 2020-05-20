@@ -1,0 +1,5 @@
+# mutation inputs
+input makePaymentInput {
+  amount: Int!
+  paymentMethodId: String!
+}

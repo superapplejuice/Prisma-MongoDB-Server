@@ -1,6 +1,7 @@
 # import * from '../generated/prisma.graphql'
 # import * from './item-schema.graphql'
 # import * from './user-schema.graphql'
+# import * from './payment-schema.graphql'
 
 # scalars
 scalar Upload
@@ -44,4 +45,6 @@ type Mutation {
   addToCart(id: ID!): CartItem!
   removeFromCart(id: ID!): CartItem
   clearCart: [CartItem]!
+  # payment
+  makePayment(data: makePaymentInput!): Alert!
 }

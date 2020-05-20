@@ -655,6 +655,11 @@ export type LoginUserInput = {
   password: Scalars['String']
 }
 
+export type MakePaymentInput = {
+  amount: Scalars['Int']
+  paymentMethodId: Scalars['String']
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
   addToCart: CartItem
@@ -670,6 +675,7 @@ export type Mutation = {
   deleteUser?: Maybe<User>
   loginUser: User
   logoutUser: Alert
+  makePayment: Alert
   registerUser: User
   removeFromCart?: Maybe<CartItem>
   updateCartItem?: Maybe<CartItem>
@@ -724,6 +730,10 @@ export type MutationDeleteUserArgs = {
 
 export type MutationLoginUserArgs = {
   data: LoginUserInput
+}
+
+export type MutationMakePaymentArgs = {
+  data: MakePaymentInput
 }
 
 export type MutationRegisterUserArgs = {
@@ -1363,6 +1373,7 @@ export type ResolversTypes = {
   Long: ResolverTypeWrapper<Scalars['Long']>
   loginUserInput: LoginUserInput
   Alert: ResolverTypeWrapper<Alert>
+  makePaymentInput: MakePaymentInput
   registerUserInput: RegisterUserInput
   CartItemUpdateInput: CartItemUpdateInput
   ItemUpdateOneRequiredInput: ItemUpdateOneRequiredInput
@@ -1446,6 +1457,7 @@ export type ResolversParentTypes = {
   Long: Scalars['Long']
   loginUserInput: LoginUserInput
   Alert: Alert
+  makePaymentInput: MakePaymentInput
   registerUserInput: RegisterUserInput
   CartItemUpdateInput: CartItemUpdateInput
   ItemUpdateOneRequiredInput: ItemUpdateOneRequiredInput
@@ -1679,6 +1691,12 @@ export type MutationResolvers<
     RequireFields<MutationLoginUserArgs, 'data'>
   >
   logoutUser?: Resolver<ResolversTypes['Alert'], ParentType, ContextType>
+  makePayment?: Resolver<
+    ResolversTypes['Alert'],
+    ParentType,
+    ContextType,
+    RequireFields<MutationMakePaymentArgs, 'data'>
+  >
   registerUser?: Resolver<
     ResolversTypes['User'],
     ParentType,
