@@ -13,10 +13,13 @@ This is a GraphQL server initialised by Prisma, with MongoDB as the database. Th
   - Add to cart
   - Remove from cart
   - Clear entire cart
+- Single payments with [Stripe](https://stripe.com)
+  - This requires a client application
 
-Next feature(s) to add:
+### Next feature(s) to add:
 
-- Stripe payments
+- Testing
+- Deployment
 
 ## Setup
 
@@ -40,9 +43,11 @@ CLOUDINARY_UPLOAD_URL=<your_cloudinary_upload_url>
 MONGO_URI=mongodb+srv://<db_user_here>:<db_user_password>@cluster01.mongodb.net/
 
 APP_SECRET=<some_secret_key>
+
+STRIPE_SKEY=<your_stripe_secret_key>
 ```
 
-**Note**, any changes to the `endpoint: '/graphql'` server options at the root `index.ts` or `PORT` in the `.env` file needs to be reflected in the `.graphqlconfig.yml` file.
+**Note:** any changes to the `endpoint: '/graphql'` server options at the root `index.ts` or `PORT` in the `.env` file needs to be reflected in the `.graphqlconfig.yml` file.
 
 3. Run `yarn codegen` to create the Docker container, and generate the Prisma schema and GraphQL resolver types
 
