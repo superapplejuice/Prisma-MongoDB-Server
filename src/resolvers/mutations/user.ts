@@ -66,7 +66,7 @@ const UserMutations: MutationResolvers = {
   },
   loginUser: {
     fragment: '',
-    resolve: async (parent, { data }, ctx, info) => {
+    resolve: async (parent, { data }, ctx) => {
       const { email, password } = data
 
       const parsedEmail = parseString(email)
@@ -88,7 +88,7 @@ const UserMutations: MutationResolvers = {
   },
   logoutUser: {
     fragment: '',
-    resolve: async (parent, args, ctx, info) => {
+    resolve: (parent, args, ctx) => {
       if (!ctx.request.userId) {
         throw new Error(REQUIRE_AUTH)
       }
