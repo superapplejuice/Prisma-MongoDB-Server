@@ -1,6 +1,6 @@
 # Prisma MongoDB Server
 
-This is a GraphQL server initialised by Prisma, with MongoDB as the database. The GraphQL server runs on GraphQL Yoga.
+This is a GraphQL server running on a Prisma client, with MongoDB as the database.
 
 ## Features
 
