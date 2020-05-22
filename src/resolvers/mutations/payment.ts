@@ -11,26 +11,23 @@ const stripe = new Stripe(process.env.STRIPE_SKEY, {
 })
 
 const PaymentMutations: MutationResolvers = {
-  makePayment: {
-    fragment: '',
-    resolve: async (parent, { data }) => {
-      // obtain payment_method_id from client
-      const { amount, paymentMethodId } = data
+  makePayment: async (parent, { data }) => {
+    // obtain payment_method_id from client
+    const { amount, paymentMethodId } = data
 
-      // create a client_secret using the payment_method_id
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount,
-        currency: 'sgd',
-        payment_method: paymentMethodId,
-      })
+    // create a client_secret using the payment_method_id
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: 'sgd',
+      payment_method: paymentMethodId,
+    })
 
-      if (!paymentIntent || !paymentIntent.client_secret) {
-        throw new Error('Payment failed!')
-      }
+    if (!paymentIntent || !paymentIntent.client_secret) {
+      throw new Error('Payment failed!')
+    }
 
-      // return client_secret to client, complete purchase flow there
-      return createAlert(false, paymentIntent.client_secret)
-    },
+    // return client_secret to client, complete purchase flow there
+    return createAlert(false, paymentIntent.client_secret)
   },
 }
 

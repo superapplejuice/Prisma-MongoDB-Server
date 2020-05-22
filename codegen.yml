@@ -4,6 +4,7 @@ documents: null
 config:
   skipTypename: false
   contextType: './context#Context'
+  noSchemaStitching: true
 generates:
   src/resolvers/types.ts:
     plugins:

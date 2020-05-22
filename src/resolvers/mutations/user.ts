@@ -21,82 +21,73 @@ const cookieOptions: CookieOptions = {
 const parseString = (value: string) => value.toLowerCase()
 
 const UserMutations: MutationResolvers = {
-  registerUser: {
-    fragment: '',
-    resolve: async (parent, { data }, ctx, info) => {
-      const { username, email, password } = data
+  registerUser: async (parent, { data }, ctx, info) => {
+    const { username, email, password } = data
 
-      const parsedUsername = parseString(username)
-      const parsedEmail = parseString(email)
+    const parsedUsername = parseString(username)
+    const parsedEmail = parseString(email)
 
-      if (!parsedUsername.match(usernameRegex)) {
-        throw new Error(INVALID_USERNAME)
-      }
-      if (!password.match(passwordRegex)) {
-        throw new Error(INVALID_PASSWORD)
-      }
+    if (!parsedUsername.match(usernameRegex)) {
+      throw new Error(INVALID_USERNAME)
+    }
+    if (!password.match(passwordRegex)) {
+      throw new Error(INVALID_PASSWORD)
+    }
 
-      const existingUsername = await ctx.db.query.user({
-        where: { username: parsedUsername },
-      })
-      if (existingUsername) {
-        throw new Error('Username already taken!')
-      }
+    const existingUsername = await ctx.db.query.user({
+      where: { username: parsedUsername },
+    })
+    if (existingUsername) {
+      throw new Error('Username already taken!')
+    }
 
-      const existingEmail = await ctx.db.query.user({
-        where: { email: parsedEmail },
-      })
-      if (existingEmail) {
-        throw new Error('Email already taken!')
-      }
+    const existingEmail = await ctx.db.query.user({
+      where: { email: parsedEmail },
+    })
+    if (existingEmail) {
+      throw new Error('Email already taken!')
+    }
 
-      const hashedPassword = await hash(password, 12)
+    const hashedPassword = await hash(password, 12)
 
-      return await ctx.db.mutation.createUser(
-        {
-          data: {
-            username: parsedUsername,
-            email: parsedEmail,
-            password: hashedPassword,
-          },
+    return await ctx.db.mutation.createUser(
+      {
+        data: {
+          username: parsedUsername,
+          email: parsedEmail,
+          password: hashedPassword,
         },
-        info
-      )
-    },
+      },
+      info
+    )
   },
-  loginUser: {
-    fragment: '',
-    resolve: async (parent, { data }, ctx) => {
-      const { email, password } = data
+  loginUser: async (parent, { data }, ctx) => {
+    const { email, password } = data
 
-      const parsedEmail = parseString(email)
+    const parsedEmail = parseString(email)
 
-      const existingEmail = await ctx.db.query.user({
-        where: { email: parsedEmail },
-      })
-      const correctPassword = await compare(password, existingEmail.password)
+    const existingEmail = await ctx.db.query.user({
+      where: { email: parsedEmail },
+    })
+    const correctPassword = await compare(password, existingEmail.password)
 
-      if (!existingEmail || !correctPassword) {
-        throw new Error(WRONG_CREDENTIALS)
-      }
+    if (!existingEmail || !correctPassword) {
+      throw new Error(WRONG_CREDENTIALS)
+    }
 
-      const token = sign({ userId: existingEmail.id }, process.env.APP_SECRET)
-      ctx.response.cookie('token', token, cookieOptions)
+    const token = sign({ userId: existingEmail.id }, process.env.APP_SECRET)
+    ctx.response.cookie('token', token, cookieOptions)
 
-      return existingEmail
-    },
+    return existingEmail
   },
-  logoutUser: {
-    fragment: '',
-    resolve: (parent, args, ctx) => {
-      if (!ctx.request.userId) {
-        throw new Error(REQUIRE_AUTH)
-      }
+  logoutUser: (parent, args, ctx) => {
+    if (!ctx.request.userId) {
+      throw new Error(REQUIRE_AUTH)
+    }
 
-      ctx.response.clearCookie('token')
+    ctx.response.clearCookie('token')
 
-      return createAlert(false, 'Logged out successfully!')
-    },
+    return createAlert(false, 'Logged out successfully!')
   },
 }
 
