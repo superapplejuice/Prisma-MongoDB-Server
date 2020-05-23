@@ -17,6 +17,7 @@ export type Scalars = {
   Int: number
   Float: number
   DateTime: any
+  /** The `Upload` scalar type represents a file upload. */
   Upload: any
   /**
    * The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -46,43 +47,11 @@ export type Alert = {
   message: Scalars['String']
 }
 
-export type BatchPayload = {
-  __typename?: 'BatchPayload'
-  /** The number of nodes that have been affected by the Batch operation. */
-  count: Scalars['Long']
-}
-
 export type CartItem = Node & {
   __typename?: 'CartItem'
   id: Scalars['ID']
   item: Item
   user: User
-}
-
-/** A connection to a list of items. */
-export type CartItemConnection = {
-  __typename?: 'CartItemConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<Maybe<CartItemEdge>>
-  aggregate: AggregateCartItem
-}
-
-export type CartItemCreateInput = {
-  id?: Maybe<Scalars['ID']>
-  item: ItemCreateOneInput
-  user: UserCreateOneWithoutCartInput
-}
-
-export type CartItemCreateManyWithoutUserInput = {
-  create?: Maybe<Array<CartItemCreateWithoutUserInput>>
-  connect?: Maybe<Array<CartItemWhereUniqueInput>>
-}
-
-export type CartItemCreateWithoutUserInput = {
-  id?: Maybe<Scalars['ID']>
-  item: ItemCreateOneInput
 }
 
 /** An edge in a connection. */
@@ -94,76 +63,9 @@ export type CartItemEdge = {
   cursor: Scalars['String']
 }
 
-export enum CartItemOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-}
-
-export type CartItemScalarWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<CartItemScalarWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<CartItemScalarWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<CartItemScalarWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values less than the given value. */
-  id_lt?: Maybe<Scalars['ID']>
-  /** All values less than or equal the given value. */
-  id_lte?: Maybe<Scalars['ID']>
-  /** All values greater than the given value. */
-  id_gt?: Maybe<Scalars['ID']>
-  /** All values greater than or equal the given value. */
-  id_gte?: Maybe<Scalars['ID']>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string. */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-}
-
-export type CartItemUpdateInput = {
-  item?: Maybe<ItemUpdateOneRequiredInput>
-  user?: Maybe<UserUpdateOneRequiredWithoutCartInput>
-}
-
-export type CartItemUpdateManyWithoutUserInput = {
-  create?: Maybe<Array<CartItemCreateWithoutUserInput>>
-  connect?: Maybe<Array<CartItemWhereUniqueInput>>
-  set?: Maybe<Array<CartItemWhereUniqueInput>>
-  disconnect?: Maybe<Array<CartItemWhereUniqueInput>>
-  delete?: Maybe<Array<CartItemWhereUniqueInput>>
-  update?: Maybe<Array<CartItemUpdateWithWhereUniqueWithoutUserInput>>
-  deleteMany?: Maybe<Array<CartItemScalarWhereInput>>
-  upsert?: Maybe<Array<CartItemUpsertWithWhereUniqueWithoutUserInput>>
-}
-
-export type CartItemUpdateWithoutUserDataInput = {
-  item?: Maybe<ItemUpdateOneRequiredInput>
-}
-
-export type CartItemUpdateWithWhereUniqueWithoutUserInput = {
-  where: CartItemWhereUniqueInput
-  data: CartItemUpdateWithoutUserDataInput
-}
-
-export type CartItemUpsertWithWhereUniqueWithoutUserInput = {
-  where: CartItemWhereUniqueInput
-  update: CartItemUpdateWithoutUserDataInput
-  create: CartItemCreateWithoutUserInput
+export type CartItemPreviousValues = {
+  __typename?: 'CartItemPreviousValues'
+  id: Scalars['ID']
 }
 
 export type CartItemWhereInput = {
@@ -200,10 +102,6 @@ export type CartItemWhereInput = {
   user?: Maybe<UserWhereInput>
 }
 
-export type CartItemWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-}
-
 export type CreateItemInput = {
   name: Scalars['String']
   description: Scalars['String']
@@ -233,47 +131,6 @@ export type Item = Node & {
   user?: Maybe<User>
 }
 
-/** A connection to a list of items. */
-export type ItemConnection = {
-  __typename?: 'ItemConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<Maybe<ItemEdge>>
-  aggregate: AggregateItem
-}
-
-export type ItemCreateimagesInput = {
-  set?: Maybe<Array<Scalars['String']>>
-}
-
-export type ItemCreateInput = {
-  id?: Maybe<Scalars['ID']>
-  name: Scalars['String']
-  description: Scalars['String']
-  price: Scalars['Int']
-  images?: Maybe<ItemCreateimagesInput>
-  user?: Maybe<UserCreateOneWithoutItemsInput>
-}
-
-export type ItemCreateManyWithoutUserInput = {
-  create?: Maybe<Array<ItemCreateWithoutUserInput>>
-  connect?: Maybe<Array<ItemWhereUniqueInput>>
-}
-
-export type ItemCreateOneInput = {
-  create?: Maybe<ItemCreateInput>
-  connect?: Maybe<ItemWhereUniqueInput>
-}
-
-export type ItemCreateWithoutUserInput = {
-  id?: Maybe<Scalars['ID']>
-  name: Scalars['String']
-  description: Scalars['String']
-  price: Scalars['Int']
-  images?: Maybe<ItemCreateimagesInput>
-}
-
 /** An edge in a connection. */
 export type ItemEdge = {
   __typename?: 'ItemEdge'
@@ -298,220 +155,15 @@ export enum ItemOrderByInput {
   UpdatedAtDesc = 'updatedAt_DESC',
 }
 
-export type ItemScalarWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<ItemScalarWhereInput>>
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<ItemScalarWhereInput>>
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<ItemScalarWhereInput>>
-  id?: Maybe<Scalars['ID']>
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>
-  /** All values less than the given value. */
-  id_lt?: Maybe<Scalars['ID']>
-  /** All values less than or equal the given value. */
-  id_lte?: Maybe<Scalars['ID']>
-  /** All values greater than the given value. */
-  id_gt?: Maybe<Scalars['ID']>
-  /** All values greater than or equal the given value. */
-  id_gte?: Maybe<Scalars['ID']>
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>
-  /** All values not ending with the given string. */
-  id_not_ends_with?: Maybe<Scalars['ID']>
-  name?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  name_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values less than the given value. */
-  name_lt?: Maybe<Scalars['String']>
-  /** All values less than or equal the given value. */
-  name_lte?: Maybe<Scalars['String']>
-  /** All values greater than the given value. */
-  name_gt?: Maybe<Scalars['String']>
-  /** All values greater than or equal the given value. */
-  name_gte?: Maybe<Scalars['String']>
-  /** All values containing the given string. */
-  name_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string. */
-  name_not_ends_with?: Maybe<Scalars['String']>
-  description?: Maybe<Scalars['String']>
-  /** All values that are not equal to given value. */
-  description_not?: Maybe<Scalars['String']>
-  /** All values that are contained in given list. */
-  description_in?: Maybe<Array<Scalars['String']>>
-  /** All values that are not contained in given list. */
-  description_not_in?: Maybe<Array<Scalars['String']>>
-  /** All values less than the given value. */
-  description_lt?: Maybe<Scalars['String']>
-  /** All values less than or equal the given value. */
-  description_lte?: Maybe<Scalars['String']>
-  /** All values greater than the given value. */
-  description_gt?: Maybe<Scalars['String']>
-  /** All values greater than or equal the given value. */
-  description_gte?: Maybe<Scalars['String']>
-  /** All values containing the given string. */
-  description_contains?: Maybe<Scalars['String']>
-  /** All values not containing the given string. */
-  description_not_contains?: Maybe<Scalars['String']>
-  /** All values starting with the given string. */
-  description_starts_with?: Maybe<Scalars['String']>
-  /** All values not starting with the given string. */
-  description_not_starts_with?: Maybe<Scalars['String']>
-  /** All values ending with the given string. */
-  description_ends_with?: Maybe<Scalars['String']>
-  /** All values not ending with the given string. */
-  description_not_ends_with?: Maybe<Scalars['String']>
-  price?: Maybe<Scalars['Int']>
-  /** All values that are not equal to given value. */
-  price_not?: Maybe<Scalars['Int']>
-  /** All values that are contained in given list. */
-  price_in?: Maybe<Array<Scalars['Int']>>
-  /** All values that are not contained in given list. */
-  price_not_in?: Maybe<Array<Scalars['Int']>>
-  /** All values less than the given value. */
-  price_lt?: Maybe<Scalars['Int']>
-  /** All values less than or equal the given value. */
-  price_lte?: Maybe<Scalars['Int']>
-  /** All values greater than the given value. */
-  price_gt?: Maybe<Scalars['Int']>
-  /** All values greater than or equal the given value. */
-  price_gte?: Maybe<Scalars['Int']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>
-}
-
-export type ItemUpdateDataInput = {
-  name?: Maybe<Scalars['String']>
-  description?: Maybe<Scalars['String']>
-  price?: Maybe<Scalars['Int']>
-  images?: Maybe<ItemUpdateimagesInput>
-  user?: Maybe<UserUpdateOneWithoutItemsInput>
-}
-
-export type ItemUpdateimagesInput = {
-  set?: Maybe<Array<Scalars['String']>>
-}
-
-export type ItemUpdateInput = {
-  name?: Maybe<Scalars['String']>
-  description?: Maybe<Scalars['String']>
-  price?: Maybe<Scalars['Int']>
-  images?: Maybe<ItemUpdateimagesInput>
-  user?: Maybe<UserUpdateOneWithoutItemsInput>
-}
-
-export type ItemUpdateManyDataInput = {
-  name?: Maybe<Scalars['String']>
-  description?: Maybe<Scalars['String']>
-  price?: Maybe<Scalars['Int']>
-  images?: Maybe<ItemUpdateimagesInput>
-}
-
-export type ItemUpdateManyMutationInput = {
-  name?: Maybe<Scalars['String']>
-  description?: Maybe<Scalars['String']>
-  price?: Maybe<Scalars['Int']>
-  images?: Maybe<ItemUpdateimagesInput>
-}
-
-export type ItemUpdateManyWithoutUserInput = {
-  create?: Maybe<Array<ItemCreateWithoutUserInput>>
-  connect?: Maybe<Array<ItemWhereUniqueInput>>
-  set?: Maybe<Array<ItemWhereUniqueInput>>
-  disconnect?: Maybe<Array<ItemWhereUniqueInput>>
-  delete?: Maybe<Array<ItemWhereUniqueInput>>
-  update?: Maybe<Array<ItemUpdateWithWhereUniqueWithoutUserInput>>
-  updateMany?: Maybe<Array<ItemUpdateManyWithWhereNestedInput>>
-  deleteMany?: Maybe<Array<ItemScalarWhereInput>>
-  upsert?: Maybe<Array<ItemUpsertWithWhereUniqueWithoutUserInput>>
-}
-
-export type ItemUpdateManyWithWhereNestedInput = {
-  where: ItemScalarWhereInput
-  data: ItemUpdateManyDataInput
-}
-
-export type ItemUpdateOneRequiredInput = {
-  create?: Maybe<ItemCreateInput>
-  connect?: Maybe<ItemWhereUniqueInput>
-  update?: Maybe<ItemUpdateDataInput>
-  upsert?: Maybe<ItemUpsertNestedInput>
-}
-
-export type ItemUpdateWithoutUserDataInput = {
-  name?: Maybe<Scalars['String']>
-  description?: Maybe<Scalars['String']>
-  price?: Maybe<Scalars['Int']>
-  images?: Maybe<ItemUpdateimagesInput>
-}
-
-export type ItemUpdateWithWhereUniqueWithoutUserInput = {
-  where: ItemWhereUniqueInput
-  data: ItemUpdateWithoutUserDataInput
-}
-
-export type ItemUpsertNestedInput = {
-  update: ItemUpdateDataInput
-  create: ItemCreateInput
-}
-
-export type ItemUpsertWithWhereUniqueWithoutUserInput = {
-  where: ItemWhereUniqueInput
-  update: ItemUpdateWithoutUserDataInput
-  create: ItemCreateWithoutUserInput
+export type ItemPreviousValues = {
+  __typename?: 'ItemPreviousValues'
+  id: Scalars['ID']
+  name: Scalars['String']
+  description: Scalars['String']
+  price: Scalars['Int']
+  images: Array<Scalars['String']>
+  createdAt: Scalars['DateTime']
+  updatedAt: Scalars['DateTime']
 }
 
 export type ItemWhereInput = {
@@ -646,10 +298,6 @@ export type ItemWhereInput = {
   user?: Maybe<UserWhereInput>
 }
 
-export type ItemWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-}
-
 export type LoginUserInput = {
   email: Scalars['String']
   password: Scalars['String']
@@ -662,128 +310,54 @@ export type MakePaymentInput = {
 
 export type Mutation = {
   __typename?: 'Mutation'
-  addToCart: CartItem
-  clearCart: Array<Maybe<CartItem>>
-  createCartItem: CartItem
   createItem: Item
-  createUser: User
-  deleteCartItem?: Maybe<CartItem>
+  updateItem: Item
   deleteItem?: Maybe<Item>
-  deleteManyCartItems: BatchPayload
-  deleteManyItems: BatchPayload
-  deleteManyUsers: BatchPayload
-  deleteUser?: Maybe<User>
+  registerUser: User
   loginUser: User
   logoutUser: Alert
-  makePayment: Alert
-  registerUser: User
+  addToCart: CartItem
   removeFromCart?: Maybe<CartItem>
-  updateCartItem?: Maybe<CartItem>
-  updateItem: Item
-  updateManyItems: BatchPayload
-  updateManyUsers: BatchPayload
-  updateUser?: Maybe<User>
-  upsertCartItem: CartItem
-  upsertItem: Item
-  upsertUser: User
-}
-
-export type MutationAddToCartArgs = {
-  id: Scalars['ID']
-}
-
-export type MutationCreateCartItemArgs = {
-  data: CartItemCreateInput
+  clearCart: Array<Maybe<CartItem>>
+  makePayment: Alert
 }
 
 export type MutationCreateItemArgs = {
   data: CreateItemInput
 }
 
-export type MutationCreateUserArgs = {
-  data: UserCreateInput
-}
-
-export type MutationDeleteCartItemArgs = {
-  where: CartItemWhereUniqueInput
+export type MutationUpdateItemArgs = {
+  data: UpdateItemInput
 }
 
 export type MutationDeleteItemArgs = {
   id: Scalars['ID']
 }
 
-export type MutationDeleteManyCartItemsArgs = {
-  where?: Maybe<CartItemWhereInput>
-}
-
-export type MutationDeleteManyItemsArgs = {
-  where?: Maybe<ItemWhereInput>
-}
-
-export type MutationDeleteManyUsersArgs = {
-  where?: Maybe<UserWhereInput>
-}
-
-export type MutationDeleteUserArgs = {
-  where: UserWhereUniqueInput
+export type MutationRegisterUserArgs = {
+  data: RegisterUserInput
 }
 
 export type MutationLoginUserArgs = {
   data: LoginUserInput
 }
 
-export type MutationMakePaymentArgs = {
-  data: MakePaymentInput
-}
-
-export type MutationRegisterUserArgs = {
-  data: RegisterUserInput
+export type MutationAddToCartArgs = {
+  id: Scalars['ID']
 }
 
 export type MutationRemoveFromCartArgs = {
   id: Scalars['ID']
 }
 
-export type MutationUpdateCartItemArgs = {
-  data: CartItemUpdateInput
-  where: CartItemWhereUniqueInput
+export type MutationMakePaymentArgs = {
+  data: MakePaymentInput
 }
 
-export type MutationUpdateItemArgs = {
-  data: UpdateItemInput
-}
-
-export type MutationUpdateManyItemsArgs = {
-  data: ItemUpdateManyMutationInput
-  where?: Maybe<ItemWhereInput>
-}
-
-export type MutationUpdateManyUsersArgs = {
-  data: UserUpdateManyMutationInput
-  where?: Maybe<UserWhereInput>
-}
-
-export type MutationUpdateUserArgs = {
-  data: UserUpdateInput
-  where: UserWhereUniqueInput
-}
-
-export type MutationUpsertCartItemArgs = {
-  where: CartItemWhereUniqueInput
-  create: CartItemCreateInput
-  update: CartItemUpdateInput
-}
-
-export type MutationUpsertItemArgs = {
-  where: ItemWhereUniqueInput
-  create: ItemCreateInput
-  update: ItemUpdateInput
-}
-
-export type MutationUpsertUserArgs = {
-  where: UserWhereUniqueInput
-  create: UserCreateInput
-  update: UserUpdateInput
+export enum MutationType {
+  Created = 'CREATED',
+  Updated = 'UPDATED',
+  Deleted = 'DELETED',
 }
 
 /** An object with an ID */
@@ -807,110 +381,23 @@ export type PageInfo = {
 
 export type Query = {
   __typename?: 'Query'
-  cartItem?: Maybe<CartItem>
-  cartItems: Array<Maybe<CartItem>>
-  cartItemsConnection: CartItemConnection
-  fetchCart: Array<Maybe<CartItem>>
-  fetchCurrentUser?: Maybe<User>
-  fetchItem: Item
   fetchItems: Array<Maybe<Item>>
+  fetchItem: Item
+  fetchCurrentUser?: Maybe<User>
   fetchUser?: Maybe<User>
-  item?: Maybe<Item>
-  items: Array<Maybe<Item>>
-  itemsConnection: ItemConnection
-  /** Fetches an object given its ID */
-  node?: Maybe<Node>
-  user?: Maybe<User>
-  users: Array<Maybe<User>>
-  usersConnection: UserConnection
-}
-
-export type QueryCartItemArgs = {
-  where: CartItemWhereUniqueInput
-}
-
-export type QueryCartItemsArgs = {
-  where?: Maybe<CartItemWhereInput>
-  orderBy?: Maybe<CartItemOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryCartItemsConnectionArgs = {
-  where?: Maybe<CartItemWhereInput>
-  orderBy?: Maybe<CartItemOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryFetchItemArgs = {
-  id: Scalars['ID']
+  fetchCart: Array<Maybe<CartItem>>
 }
 
 export type QueryFetchItemsArgs = {
   data?: Maybe<FetchItemsInput>
 }
 
+export type QueryFetchItemArgs = {
+  id: Scalars['ID']
+}
+
 export type QueryFetchUserArgs = {
   id: Scalars['ID']
-}
-
-export type QueryItemArgs = {
-  where: ItemWhereUniqueInput
-}
-
-export type QueryItemsArgs = {
-  where?: Maybe<ItemWhereInput>
-  orderBy?: Maybe<ItemOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryItemsConnectionArgs = {
-  where?: Maybe<ItemWhereInput>
-  orderBy?: Maybe<ItemOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryNodeArgs = {
-  id: Scalars['ID']
-}
-
-export type QueryUserArgs = {
-  where: UserWhereUniqueInput
-}
-
-export type QueryUsersArgs = {
-  where?: Maybe<UserWhereInput>
-  orderBy?: Maybe<UserOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type QueryUsersConnectionArgs = {
-  where?: Maybe<UserWhereInput>
-  orderBy?: Maybe<UserOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
 }
 
 export type RegisterUserInput = {
@@ -929,78 +416,10 @@ export type UpdateItemInput = {
 
 export type User = {
   __typename?: 'User'
-  cart?: Maybe<Array<CartItem>>
-  email: Scalars['String']
   id: Scalars['ID']
-  items?: Maybe<Array<Item>>
+  username: Scalars['String']
+  email: Scalars['String']
   joined: Scalars['DateTime']
-  password: Scalars['String']
-  username: Scalars['String']
-}
-
-export type UserCartArgs = {
-  where?: Maybe<CartItemWhereInput>
-  orderBy?: Maybe<CartItemOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-export type UserItemsArgs = {
-  where?: Maybe<ItemWhereInput>
-  orderBy?: Maybe<ItemOrderByInput>
-  skip?: Maybe<Scalars['Int']>
-  after?: Maybe<Scalars['String']>
-  before?: Maybe<Scalars['String']>
-  first?: Maybe<Scalars['Int']>
-  last?: Maybe<Scalars['Int']>
-}
-
-/** A connection to a list of items. */
-export type UserConnection = {
-  __typename?: 'UserConnection'
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo
-  /** A list of edges. */
-  edges: Array<Maybe<UserEdge>>
-  aggregate: AggregateUser
-}
-
-export type UserCreateInput = {
-  id?: Maybe<Scalars['ID']>
-  username: Scalars['String']
-  email: Scalars['String']
-  password: Scalars['String']
-  items?: Maybe<ItemCreateManyWithoutUserInput>
-  cart?: Maybe<CartItemCreateManyWithoutUserInput>
-}
-
-export type UserCreateOneWithoutCartInput = {
-  create?: Maybe<UserCreateWithoutCartInput>
-  connect?: Maybe<UserWhereUniqueInput>
-}
-
-export type UserCreateOneWithoutItemsInput = {
-  create?: Maybe<UserCreateWithoutItemsInput>
-  connect?: Maybe<UserWhereUniqueInput>
-}
-
-export type UserCreateWithoutCartInput = {
-  id?: Maybe<Scalars['ID']>
-  username: Scalars['String']
-  email: Scalars['String']
-  password: Scalars['String']
-  items?: Maybe<ItemCreateManyWithoutUserInput>
-}
-
-export type UserCreateWithoutItemsInput = {
-  id?: Maybe<Scalars['ID']>
-  username: Scalars['String']
-  email: Scalars['String']
-  password: Scalars['String']
-  cart?: Maybe<CartItemCreateManyWithoutUserInput>
 }
 
 /** An edge in a connection. */
@@ -1012,71 +431,13 @@ export type UserEdge = {
   cursor: Scalars['String']
 }
 
-export enum UserOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  UsernameAsc = 'username_ASC',
-  UsernameDesc = 'username_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC',
-  PasswordAsc = 'password_ASC',
-  PasswordDesc = 'password_DESC',
-  JoinedAsc = 'joined_ASC',
-  JoinedDesc = 'joined_DESC',
-}
-
-export type UserUpdateInput = {
-  username?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  password?: Maybe<Scalars['String']>
-  items?: Maybe<ItemUpdateManyWithoutUserInput>
-  cart?: Maybe<CartItemUpdateManyWithoutUserInput>
-}
-
-export type UserUpdateManyMutationInput = {
-  username?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  password?: Maybe<Scalars['String']>
-}
-
-export type UserUpdateOneRequiredWithoutCartInput = {
-  create?: Maybe<UserCreateWithoutCartInput>
-  connect?: Maybe<UserWhereUniqueInput>
-  update?: Maybe<UserUpdateWithoutCartDataInput>
-  upsert?: Maybe<UserUpsertWithoutCartInput>
-}
-
-export type UserUpdateOneWithoutItemsInput = {
-  create?: Maybe<UserCreateWithoutItemsInput>
-  connect?: Maybe<UserWhereUniqueInput>
-  disconnect?: Maybe<Scalars['Boolean']>
-  delete?: Maybe<Scalars['Boolean']>
-  update?: Maybe<UserUpdateWithoutItemsDataInput>
-  upsert?: Maybe<UserUpsertWithoutItemsInput>
-}
-
-export type UserUpdateWithoutCartDataInput = {
-  username?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  password?: Maybe<Scalars['String']>
-  items?: Maybe<ItemUpdateManyWithoutUserInput>
-}
-
-export type UserUpdateWithoutItemsDataInput = {
-  username?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-  password?: Maybe<Scalars['String']>
-  cart?: Maybe<CartItemUpdateManyWithoutUserInput>
-}
-
-export type UserUpsertWithoutCartInput = {
-  update: UserUpdateWithoutCartDataInput
-  create: UserCreateWithoutCartInput
-}
-
-export type UserUpsertWithoutItemsInput = {
-  update: UserUpdateWithoutItemsDataInput
-  create: UserCreateWithoutItemsInput
+export type UserPreviousValues = {
+  __typename?: 'UserPreviousValues'
+  id: Scalars['ID']
+  username: Scalars['String']
+  email: Scalars['String']
+  password: Scalars['String']
+  joined: Scalars['DateTime']
 }
 
 export type UserWhereInput = {
@@ -1209,12 +570,6 @@ export type UserWhereInput = {
   cart_some?: Maybe<CartItemWhereInput>
 }
 
-export type UserWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>
-  username?: Maybe<Scalars['String']>
-  email?: Maybe<Scalars['String']>
-}
-
 export type ResolverTypeWrapper<T> = Promise<T> | T
 
 export type Resolver<
@@ -1322,169 +677,79 @@ export type DirectiveResolverFn<
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>
-  CartItemWhereUniqueInput: CartItemWhereUniqueInput
+  fetchItemsInput: FetchItemsInput
+  ItemWhereInput: ItemWhereInput
   ID: ResolverTypeWrapper<Scalars['ID']>
-  CartItem: ResolverTypeWrapper<CartItem>
-  Node: ResolversTypes['CartItem'] | ResolversTypes['Item']
-  Item: ResolverTypeWrapper<Item>
   String: ResolverTypeWrapper<Scalars['String']>
   Int: ResolverTypeWrapper<Scalars['Int']>
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>
-  User: ResolverTypeWrapper<User>
-  CartItemWhereInput: CartItemWhereInput
-  ItemWhereInput: ItemWhereInput
   UserWhereInput: UserWhereInput
-  CartItemOrderByInput: CartItemOrderByInput
+  CartItemWhereInput: CartItemWhereInput
   ItemOrderByInput: ItemOrderByInput
-  CartItemConnection: ResolverTypeWrapper<CartItemConnection>
-  PageInfo: ResolverTypeWrapper<PageInfo>
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>
-  CartItemEdge: ResolverTypeWrapper<CartItemEdge>
-  AggregateCartItem: ResolverTypeWrapper<AggregateCartItem>
-  fetchItemsInput: FetchItemsInput
-  ItemWhereUniqueInput: ItemWhereUniqueInput
-  ItemConnection: ResolverTypeWrapper<ItemConnection>
-  ItemEdge: ResolverTypeWrapper<ItemEdge>
-  AggregateItem: ResolverTypeWrapper<AggregateItem>
-  UserWhereUniqueInput: UserWhereUniqueInput
-  UserOrderByInput: UserOrderByInput
-  UserConnection: ResolverTypeWrapper<UserConnection>
-  UserEdge: ResolverTypeWrapper<UserEdge>
-  AggregateUser: ResolverTypeWrapper<AggregateUser>
+  Item: ResolverTypeWrapper<Item>
+  Node: ResolversTypes['Item'] | ResolversTypes['CartItem']
+  User: ResolverTypeWrapper<User>
+  CartItem: ResolverTypeWrapper<CartItem>
   Mutation: ResolverTypeWrapper<{}>
-  CartItemCreateInput: CartItemCreateInput
-  ItemCreateOneInput: ItemCreateOneInput
-  ItemCreateInput: ItemCreateInput
-  ItemCreateimagesInput: ItemCreateimagesInput
-  UserCreateOneWithoutItemsInput: UserCreateOneWithoutItemsInput
-  UserCreateWithoutItemsInput: UserCreateWithoutItemsInput
-  CartItemCreateManyWithoutUserInput: CartItemCreateManyWithoutUserInput
-  CartItemCreateWithoutUserInput: CartItemCreateWithoutUserInput
-  UserCreateOneWithoutCartInput: UserCreateOneWithoutCartInput
-  UserCreateWithoutCartInput: UserCreateWithoutCartInput
-  ItemCreateManyWithoutUserInput: ItemCreateManyWithoutUserInput
-  ItemCreateWithoutUserInput: ItemCreateWithoutUserInput
   createItemInput: CreateItemInput
   Upload: ResolverTypeWrapper<Scalars['Upload']>
-  UserCreateInput: UserCreateInput
-  BatchPayload: ResolverTypeWrapper<BatchPayload>
-  Long: ResolverTypeWrapper<Scalars['Long']>
+  updateItemInput: UpdateItemInput
+  registerUserInput: RegisterUserInput
   loginUserInput: LoginUserInput
   Alert: ResolverTypeWrapper<Alert>
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>
   makePaymentInput: MakePaymentInput
-  registerUserInput: RegisterUserInput
-  CartItemUpdateInput: CartItemUpdateInput
-  ItemUpdateOneRequiredInput: ItemUpdateOneRequiredInput
-  ItemUpdateDataInput: ItemUpdateDataInput
-  ItemUpdateimagesInput: ItemUpdateimagesInput
-  UserUpdateOneWithoutItemsInput: UserUpdateOneWithoutItemsInput
-  UserUpdateWithoutItemsDataInput: UserUpdateWithoutItemsDataInput
-  CartItemUpdateManyWithoutUserInput: CartItemUpdateManyWithoutUserInput
-  CartItemUpdateWithWhereUniqueWithoutUserInput: CartItemUpdateWithWhereUniqueWithoutUserInput
-  CartItemUpdateWithoutUserDataInput: CartItemUpdateWithoutUserDataInput
-  CartItemScalarWhereInput: CartItemScalarWhereInput
-  CartItemUpsertWithWhereUniqueWithoutUserInput: CartItemUpsertWithWhereUniqueWithoutUserInput
-  UserUpsertWithoutItemsInput: UserUpsertWithoutItemsInput
-  ItemUpsertNestedInput: ItemUpsertNestedInput
-  UserUpdateOneRequiredWithoutCartInput: UserUpdateOneRequiredWithoutCartInput
-  UserUpdateWithoutCartDataInput: UserUpdateWithoutCartDataInput
-  ItemUpdateManyWithoutUserInput: ItemUpdateManyWithoutUserInput
-  ItemUpdateWithWhereUniqueWithoutUserInput: ItemUpdateWithWhereUniqueWithoutUserInput
-  ItemUpdateWithoutUserDataInput: ItemUpdateWithoutUserDataInput
-  ItemUpdateManyWithWhereNestedInput: ItemUpdateManyWithWhereNestedInput
-  ItemScalarWhereInput: ItemScalarWhereInput
-  ItemUpdateManyDataInput: ItemUpdateManyDataInput
-  ItemUpsertWithWhereUniqueWithoutUserInput: ItemUpsertWithWhereUniqueWithoutUserInput
-  UserUpsertWithoutCartInput: UserUpsertWithoutCartInput
-  updateItemInput: UpdateItemInput
-  ItemUpdateManyMutationInput: ItemUpdateManyMutationInput
-  UserUpdateManyMutationInput: UserUpdateManyMutationInput
-  UserUpdateInput: UserUpdateInput
-  ItemUpdateInput: ItemUpdateInput
+  Long: ResolverTypeWrapper<Scalars['Long']>
+  PageInfo: ResolverTypeWrapper<PageInfo>
+  CartItemEdge: ResolverTypeWrapper<CartItemEdge>
+  AggregateCartItem: ResolverTypeWrapper<AggregateCartItem>
+  MutationType: MutationType
+  CartItemPreviousValues: ResolverTypeWrapper<CartItemPreviousValues>
+  ItemEdge: ResolverTypeWrapper<ItemEdge>
+  AggregateItem: ResolverTypeWrapper<AggregateItem>
+  ItemPreviousValues: ResolverTypeWrapper<ItemPreviousValues>
+  UserEdge: ResolverTypeWrapper<UserEdge>
+  AggregateUser: ResolverTypeWrapper<AggregateUser>
+  UserPreviousValues: ResolverTypeWrapper<UserPreviousValues>
 }
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {}
-  CartItemWhereUniqueInput: CartItemWhereUniqueInput
+  fetchItemsInput: FetchItemsInput
+  ItemWhereInput: ItemWhereInput
   ID: Scalars['ID']
-  CartItem: CartItem
-  Node: ResolversParentTypes['CartItem'] | ResolversParentTypes['Item']
-  Item: Item
   String: Scalars['String']
   Int: Scalars['Int']
   DateTime: Scalars['DateTime']
-  User: User
-  CartItemWhereInput: CartItemWhereInput
-  ItemWhereInput: ItemWhereInput
   UserWhereInput: UserWhereInput
-  CartItemOrderByInput: CartItemOrderByInput
+  CartItemWhereInput: CartItemWhereInput
   ItemOrderByInput: ItemOrderByInput
-  CartItemConnection: CartItemConnection
-  PageInfo: PageInfo
-  Boolean: Scalars['Boolean']
-  CartItemEdge: CartItemEdge
-  AggregateCartItem: AggregateCartItem
-  fetchItemsInput: FetchItemsInput
-  ItemWhereUniqueInput: ItemWhereUniqueInput
-  ItemConnection: ItemConnection
-  ItemEdge: ItemEdge
-  AggregateItem: AggregateItem
-  UserWhereUniqueInput: UserWhereUniqueInput
-  UserOrderByInput: UserOrderByInput
-  UserConnection: UserConnection
-  UserEdge: UserEdge
-  AggregateUser: AggregateUser
+  Item: Item
+  Node: ResolversParentTypes['Item'] | ResolversParentTypes['CartItem']
+  User: User
+  CartItem: CartItem
   Mutation: {}
-  CartItemCreateInput: CartItemCreateInput
-  ItemCreateOneInput: ItemCreateOneInput
-  ItemCreateInput: ItemCreateInput
-  ItemCreateimagesInput: ItemCreateimagesInput
-  UserCreateOneWithoutItemsInput: UserCreateOneWithoutItemsInput
-  UserCreateWithoutItemsInput: UserCreateWithoutItemsInput
-  CartItemCreateManyWithoutUserInput: CartItemCreateManyWithoutUserInput
-  CartItemCreateWithoutUserInput: CartItemCreateWithoutUserInput
-  UserCreateOneWithoutCartInput: UserCreateOneWithoutCartInput
-  UserCreateWithoutCartInput: UserCreateWithoutCartInput
-  ItemCreateManyWithoutUserInput: ItemCreateManyWithoutUserInput
-  ItemCreateWithoutUserInput: ItemCreateWithoutUserInput
   createItemInput: CreateItemInput
   Upload: Scalars['Upload']
-  UserCreateInput: UserCreateInput
-  BatchPayload: BatchPayload
-  Long: Scalars['Long']
+  updateItemInput: UpdateItemInput
+  registerUserInput: RegisterUserInput
   loginUserInput: LoginUserInput
   Alert: Alert
+  Boolean: Scalars['Boolean']
   makePaymentInput: MakePaymentInput
-  registerUserInput: RegisterUserInput
-  CartItemUpdateInput: CartItemUpdateInput
-  ItemUpdateOneRequiredInput: ItemUpdateOneRequiredInput
-  ItemUpdateDataInput: ItemUpdateDataInput
-  ItemUpdateimagesInput: ItemUpdateimagesInput
-  UserUpdateOneWithoutItemsInput: UserUpdateOneWithoutItemsInput
-  UserUpdateWithoutItemsDataInput: UserUpdateWithoutItemsDataInput
-  CartItemUpdateManyWithoutUserInput: CartItemUpdateManyWithoutUserInput
-  CartItemUpdateWithWhereUniqueWithoutUserInput: CartItemUpdateWithWhereUniqueWithoutUserInput
-  CartItemUpdateWithoutUserDataInput: CartItemUpdateWithoutUserDataInput
-  CartItemScalarWhereInput: CartItemScalarWhereInput
-  CartItemUpsertWithWhereUniqueWithoutUserInput: CartItemUpsertWithWhereUniqueWithoutUserInput
-  UserUpsertWithoutItemsInput: UserUpsertWithoutItemsInput
-  ItemUpsertNestedInput: ItemUpsertNestedInput
-  UserUpdateOneRequiredWithoutCartInput: UserUpdateOneRequiredWithoutCartInput
-  UserUpdateWithoutCartDataInput: UserUpdateWithoutCartDataInput
-  ItemUpdateManyWithoutUserInput: ItemUpdateManyWithoutUserInput
-  ItemUpdateWithWhereUniqueWithoutUserInput: ItemUpdateWithWhereUniqueWithoutUserInput
-  ItemUpdateWithoutUserDataInput: ItemUpdateWithoutUserDataInput
-  ItemUpdateManyWithWhereNestedInput: ItemUpdateManyWithWhereNestedInput
-  ItemScalarWhereInput: ItemScalarWhereInput
-  ItemUpdateManyDataInput: ItemUpdateManyDataInput
-  ItemUpsertWithWhereUniqueWithoutUserInput: ItemUpsertWithWhereUniqueWithoutUserInput
-  UserUpsertWithoutCartInput: UserUpsertWithoutCartInput
-  updateItemInput: UpdateItemInput
-  ItemUpdateManyMutationInput: ItemUpdateManyMutationInput
-  UserUpdateManyMutationInput: UserUpdateManyMutationInput
-  UserUpdateInput: UserUpdateInput
-  ItemUpdateInput: ItemUpdateInput
+  Long: Scalars['Long']
+  PageInfo: PageInfo
+  CartItemEdge: CartItemEdge
+  AggregateCartItem: AggregateCartItem
+  MutationType: MutationType
+  CartItemPreviousValues: CartItemPreviousValues
+  ItemEdge: ItemEdge
+  AggregateItem: AggregateItem
+  ItemPreviousValues: ItemPreviousValues
+  UserEdge: UserEdge
+  AggregateUser: AggregateUser
+  UserPreviousValues: UserPreviousValues
 }
 
 export type AggregateCartItemResolvers<
@@ -1520,14 +785,6 @@ export type AlertResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
-export type BatchPayloadResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['BatchPayload'] = ResolversParentTypes['BatchPayload']
-> = {
-  count?: Resolver<ResolversTypes['Long'], ParentType, ContextType>
-  __isTypeOf?: isTypeOfResolverFn<ParentType>
-}
-
 export type CartItemResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['CartItem'] = ResolversParentTypes['CartItem']
@@ -1538,30 +795,20 @@ export type CartItemResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
-export type CartItemConnectionResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['CartItemConnection'] = ResolversParentTypes['CartItemConnection']
-> = {
-  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  edges?: Resolver<
-    Array<Maybe<ResolversTypes['CartItemEdge']>>,
-    ParentType,
-    ContextType
-  >
-  aggregate?: Resolver<
-    ResolversTypes['AggregateCartItem'],
-    ParentType,
-    ContextType
-  >
-  __isTypeOf?: isTypeOfResolverFn<ParentType>
-}
-
 export type CartItemEdgeResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['CartItemEdge'] = ResolversParentTypes['CartItemEdge']
 > = {
   node?: Resolver<ResolversTypes['CartItem'], ParentType, ContextType>
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  __isTypeOf?: isTypeOfResolverFn<ParentType>
+}
+
+export type CartItemPreviousValuesResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes['CartItemPreviousValues'] = ResolversParentTypes['CartItemPreviousValues']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -1585,26 +832,26 @@ export type ItemResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
-export type ItemConnectionResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['ItemConnection'] = ResolversParentTypes['ItemConnection']
-> = {
-  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  edges?: Resolver<
-    Array<Maybe<ResolversTypes['ItemEdge']>>,
-    ParentType,
-    ContextType
-  >
-  aggregate?: Resolver<ResolversTypes['AggregateItem'], ParentType, ContextType>
-  __isTypeOf?: isTypeOfResolverFn<ParentType>
-}
-
 export type ItemEdgeResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['ItemEdge'] = ResolversParentTypes['ItemEdge']
 > = {
   node?: Resolver<ResolversTypes['Item'], ParentType, ContextType>
   cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  __isTypeOf?: isTypeOfResolverFn<ParentType>
+}
+
+export type ItemPreviousValuesResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes['ItemPreviousValues'] = ResolversParentTypes['ItemPreviousValues']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  price?: Resolver<ResolversTypes['Int'], ParentType, ContextType>
+  images?: Resolver<Array<ResolversTypes['String']>, ParentType, ContextType>
+  createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
+  updatedAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -1617,40 +864,17 @@ export type MutationResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']
 > = {
-  addToCart?: Resolver<
-    ResolversTypes['CartItem'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationAddToCartArgs, 'id'>
-  >
-  clearCart?: Resolver<
-    Array<Maybe<ResolversTypes['CartItem']>>,
-    ParentType,
-    ContextType
-  >
-  createCartItem?: Resolver<
-    ResolversTypes['CartItem'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationCreateCartItemArgs, 'data'>
-  >
   createItem?: Resolver<
     ResolversTypes['Item'],
     ParentType,
     ContextType,
     RequireFields<MutationCreateItemArgs, 'data'>
   >
-  createUser?: Resolver<
-    ResolversTypes['User'],
+  updateItem?: Resolver<
+    ResolversTypes['Item'],
     ParentType,
     ContextType,
-    RequireFields<MutationCreateUserArgs, 'data'>
-  >
-  deleteCartItem?: Resolver<
-    Maybe<ResolversTypes['CartItem']>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationDeleteCartItemArgs, 'where'>
+    RequireFields<MutationUpdateItemArgs, 'data'>
   >
   deleteItem?: Resolver<
     Maybe<ResolversTypes['Item']>,
@@ -1658,29 +882,11 @@ export type MutationResolvers<
     ContextType,
     RequireFields<MutationDeleteItemArgs, 'id'>
   >
-  deleteManyCartItems?: Resolver<
-    ResolversTypes['BatchPayload'],
+  registerUser?: Resolver<
+    ResolversTypes['User'],
     ParentType,
     ContextType,
-    RequireFields<MutationDeleteManyCartItemsArgs, never>
-  >
-  deleteManyItems?: Resolver<
-    ResolversTypes['BatchPayload'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationDeleteManyItemsArgs, never>
-  >
-  deleteManyUsers?: Resolver<
-    ResolversTypes['BatchPayload'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationDeleteManyUsersArgs, never>
-  >
-  deleteUser?: Resolver<
-    Maybe<ResolversTypes['User']>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationDeleteUserArgs, 'where'>
+    RequireFields<MutationRegisterUserArgs, 'data'>
   >
   loginUser?: Resolver<
     ResolversTypes['User'],
@@ -1689,17 +895,11 @@ export type MutationResolvers<
     RequireFields<MutationLoginUserArgs, 'data'>
   >
   logoutUser?: Resolver<ResolversTypes['Alert'], ParentType, ContextType>
-  makePayment?: Resolver<
-    ResolversTypes['Alert'],
+  addToCart?: Resolver<
+    ResolversTypes['CartItem'],
     ParentType,
     ContextType,
-    RequireFields<MutationMakePaymentArgs, 'data'>
-  >
-  registerUser?: Resolver<
-    ResolversTypes['User'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationRegisterUserArgs, 'data'>
+    RequireFields<MutationAddToCartArgs, 'id'>
   >
   removeFromCart?: Resolver<
     Maybe<ResolversTypes['CartItem']>,
@@ -1707,53 +907,16 @@ export type MutationResolvers<
     ContextType,
     RequireFields<MutationRemoveFromCartArgs, 'id'>
   >
-  updateCartItem?: Resolver<
-    Maybe<ResolversTypes['CartItem']>,
+  clearCart?: Resolver<
+    Array<Maybe<ResolversTypes['CartItem']>>,
     ParentType,
-    ContextType,
-    RequireFields<MutationUpdateCartItemArgs, 'data' | 'where'>
+    ContextType
   >
-  updateItem?: Resolver<
-    ResolversTypes['Item'],
+  makePayment?: Resolver<
+    ResolversTypes['Alert'],
     ParentType,
     ContextType,
-    RequireFields<MutationUpdateItemArgs, 'data'>
-  >
-  updateManyItems?: Resolver<
-    ResolversTypes['BatchPayload'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateManyItemsArgs, 'data'>
-  >
-  updateManyUsers?: Resolver<
-    ResolversTypes['BatchPayload'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateManyUsersArgs, 'data'>
-  >
-  updateUser?: Resolver<
-    Maybe<ResolversTypes['User']>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateUserArgs, 'data' | 'where'>
-  >
-  upsertCartItem?: Resolver<
-    ResolversTypes['CartItem'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpsertCartItemArgs, 'where' | 'create' | 'update'>
-  >
-  upsertItem?: Resolver<
-    ResolversTypes['Item'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpsertItemArgs, 'where' | 'create' | 'update'>
-  >
-  upsertUser?: Resolver<
-    ResolversTypes['User'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpsertUserArgs, 'where' | 'create' | 'update'>
+    RequireFields<MutationMakePaymentArgs, 'data'>
   >
 }
 
@@ -1761,7 +924,7 @@ export type NodeResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['Node'] = ResolversParentTypes['Node']
 > = {
-  __resolveType: TypeResolveFn<'CartItem' | 'Item', ParentType, ContextType>
+  __resolveType: TypeResolveFn<'Item' | 'CartItem', ParentType, ContextType>
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
 }
 
@@ -1784,33 +947,11 @@ export type QueryResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
 > = {
-  cartItem?: Resolver<
-    Maybe<ResolversTypes['CartItem']>,
+  fetchItems?: Resolver<
+    Array<Maybe<ResolversTypes['Item']>>,
     ParentType,
     ContextType,
-    RequireFields<QueryCartItemArgs, 'where'>
-  >
-  cartItems?: Resolver<
-    Array<Maybe<ResolversTypes['CartItem']>>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryCartItemsArgs, never>
-  >
-  cartItemsConnection?: Resolver<
-    ResolversTypes['CartItemConnection'],
-    ParentType,
-    ContextType,
-    RequireFields<QueryCartItemsConnectionArgs, never>
-  >
-  fetchCart?: Resolver<
-    Array<Maybe<ResolversTypes['CartItem']>>,
-    ParentType,
-    ContextType
-  >
-  fetchCurrentUser?: Resolver<
-    Maybe<ResolversTypes['User']>,
-    ParentType,
-    ContextType
+    RequireFields<QueryFetchItemsArgs, never>
   >
   fetchItem?: Resolver<
     ResolversTypes['Item'],
@@ -1818,11 +959,10 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryFetchItemArgs, 'id'>
   >
-  fetchItems?: Resolver<
-    Array<Maybe<ResolversTypes['Item']>>,
+  fetchCurrentUser?: Resolver<
+    Maybe<ResolversTypes['User']>,
     ParentType,
-    ContextType,
-    RequireFields<QueryFetchItemsArgs, never>
+    ContextType
   >
   fetchUser?: Resolver<
     Maybe<ResolversTypes['User']>,
@@ -1830,47 +970,10 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryFetchUserArgs, 'id'>
   >
-  item?: Resolver<
-    Maybe<ResolversTypes['Item']>,
+  fetchCart?: Resolver<
+    Array<Maybe<ResolversTypes['CartItem']>>,
     ParentType,
-    ContextType,
-    RequireFields<QueryItemArgs, 'where'>
-  >
-  items?: Resolver<
-    Array<Maybe<ResolversTypes['Item']>>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryItemsArgs, never>
-  >
-  itemsConnection?: Resolver<
-    ResolversTypes['ItemConnection'],
-    ParentType,
-    ContextType,
-    RequireFields<QueryItemsConnectionArgs, never>
-  >
-  node?: Resolver<
-    Maybe<ResolversTypes['Node']>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryNodeArgs, 'id'>
-  >
-  user?: Resolver<
-    Maybe<ResolversTypes['User']>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryUserArgs, 'where'>
-  >
-  users?: Resolver<
-    Array<Maybe<ResolversTypes['User']>>,
-    ParentType,
-    ContextType,
-    RequireFields<QueryUsersArgs, never>
-  >
-  usersConnection?: Resolver<
-    ResolversTypes['UserConnection'],
-    ParentType,
-    ContextType,
-    RequireFields<QueryUsersConnectionArgs, never>
+    ContextType
   >
 }
 
@@ -1883,37 +986,10 @@ export type UserResolvers<
   ContextType = Context,
   ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']
 > = {
-  cart?: Resolver<
-    Maybe<Array<ResolversTypes['CartItem']>>,
-    ParentType,
-    ContextType,
-    RequireFields<UserCartArgs, never>
-  >
-  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
-  items?: Resolver<
-    Maybe<Array<ResolversTypes['Item']>>,
-    ParentType,
-    ContextType,
-    RequireFields<UserItemsArgs, never>
-  >
-  joined?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
-  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>
-  __isTypeOf?: isTypeOfResolverFn<ParentType>
-}
-
-export type UserConnectionResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['UserConnection'] = ResolversParentTypes['UserConnection']
-> = {
-  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>
-  edges?: Resolver<
-    Array<Maybe<ResolversTypes['UserEdge']>>,
-    ParentType,
-    ContextType
-  >
-  aggregate?: Resolver<ResolversTypes['AggregateUser'], ParentType, ContextType>
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  joined?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
@@ -1926,19 +1002,30 @@ export type UserEdgeResolvers<
   __isTypeOf?: isTypeOfResolverFn<ParentType>
 }
 
+export type UserPreviousValuesResolvers<
+  ContextType = Context,
+  ParentType extends ResolversParentTypes['UserPreviousValues'] = ResolversParentTypes['UserPreviousValues']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>
+  joined?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>
+  __isTypeOf?: isTypeOfResolverFn<ParentType>
+}
+
 export type Resolvers<ContextType = Context> = {
   AggregateCartItem?: AggregateCartItemResolvers<ContextType>
   AggregateItem?: AggregateItemResolvers<ContextType>
   AggregateUser?: AggregateUserResolvers<ContextType>
   Alert?: AlertResolvers<ContextType>
-  BatchPayload?: BatchPayloadResolvers<ContextType>
   CartItem?: CartItemResolvers<ContextType>
-  CartItemConnection?: CartItemConnectionResolvers<ContextType>
   CartItemEdge?: CartItemEdgeResolvers<ContextType>
+  CartItemPreviousValues?: CartItemPreviousValuesResolvers<ContextType>
   DateTime?: GraphQLScalarType
   Item?: ItemResolvers<ContextType>
-  ItemConnection?: ItemConnectionResolvers<ContextType>
   ItemEdge?: ItemEdgeResolvers<ContextType>
+  ItemPreviousValues?: ItemPreviousValuesResolvers<ContextType>
   Long?: GraphQLScalarType
   Mutation?: MutationResolvers<ContextType>
   Node?: NodeResolvers
@@ -1946,8 +1033,8 @@ export type Resolvers<ContextType = Context> = {
   Query?: QueryResolvers<ContextType>
   Upload?: GraphQLScalarType
   User?: UserResolvers<ContextType>
-  UserConnection?: UserConnectionResolvers<ContextType>
   UserEdge?: UserEdgeResolvers<ContextType>
+  UserPreviousValues?: UserPreviousValuesResolvers<ContextType>
 }
 
 /**

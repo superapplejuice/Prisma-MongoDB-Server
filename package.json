@@ -17,9 +17,9 @@
   "scripts": {
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "commit": "npx git-cz",
-    "codegen": "sh codegen.sh",
-    "dev": "nodemon",
-    "test": "jest src/tests"
+    "prisma": "sh prisma.sh",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "dev": "nodemon"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.13.5",

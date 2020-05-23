@@ -49,10 +49,12 @@ STRIPE_SKEY=<your_stripe_secret_key>
 
 **Note:** any changes to the `endpoint: '/graphql'` server options at the root `index.ts` or `PORT` in the `.env` file needs to be reflected in the `.graphqlconfig.yml` file.
 
-3. Run `yarn codegen` to create the Docker container, and generate the Prisma schema and GraphQL resolver types
+3. Run `yarn prisma` to create the Docker container, and generate the Prisma schema
 
-4. Run `yarn dev` to start the server. A message in the terminal will tell you where the GraphQL server endpoint is running.
+4. Run `yarn codegen` to generate the GraphQL resolver types
 
-5. ???
+5. Run `yarn dev` to start the server. A message in the terminal will tell you where the GraphQL server endpoint is running.
 
-6. Profit
+6. ???
+
+7. Profit
