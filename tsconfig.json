@@ -13,7 +13,7 @@
     "baseUrl": "./",
     "paths": {
       "@generated/*": ["./src/generated/*"],
-      "@lib/*": ["./src/lib/*"],
+      "@lib": ["./src/lib/"],
       "@resolvers": ["./src/resolvers/"],
       "@utils/*": ["./src/utils/*"]
     }

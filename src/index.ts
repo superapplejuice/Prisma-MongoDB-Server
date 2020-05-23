@@ -1,20 +1,14 @@
 require('dotenv').config({ path: '.env' })
 
-import { GraphQLServer, Options } from 'graphql-yoga'
 import cookieParser from 'cookie-parser'
 import { verify } from 'jsonwebtoken'
 
+import { Options } from 'graphql-yoga'
 import { Request } from '@utils/types'
 
-import * as resolvers from '@resolvers'
-import db from '@lib/db'
+import { createServer } from '@lib'
 
-const server = new GraphQLServer({
-  typeDefs: 'src/schemas/schema.graphql',
-  resolvers,
-  resolverValidationOptions: { requireResolversForResolveType: false },
-  context: req => ({ ...req, db }),
-})
+const server = createServer()
 
 server.express.use(cookieParser())
 
@@ -27,24 +21,6 @@ server.express.use((req: Request, res, next) => {
 
     req.userId = userId
   }
-
-  return next()
-})
-
-// populate `currentUser`, if available, on every request
-server.express.use(async (req: Request, res, next) => {
-  if (!req.userId) {
-    return next()
-  }
-
-  const currentUser = await db.query.user(
-    {
-      where: { id: req.userId },
-    },
-    `{id, username, email}`
-  )
-
-  req.currentUser = currentUser
 
   return next()
 })
