@@ -1,8 +1,8 @@
 import { MutationResolvers } from '../types'
 
-import { uploadImages } from '../../utils/functions'
-import { NO_ITEM, NOT_OWNER, REQUIRE_AUTH } from '../../utils/messages'
-import { itemResolveInfo } from '../../utils/connect'
+import { uploadImages } from '@utils/functions'
+import { NO_ITEM, NOT_OWNER, REQUIRE_AUTH } from '@utils/messages'
+import { itemResolveInfo } from '@utils/connect'
 
 const ItemMutations: MutationResolvers = {
   createItem: async (parent, { data }, ctx, info) => {

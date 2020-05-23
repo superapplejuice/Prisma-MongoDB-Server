@@ -1,6 +1,6 @@
 import { QueryResolvers } from '../types'
 
-import { NO_ITEM } from '../../utils/messages'
+import { NO_ITEM } from '@utils/messages'
 
 const ItemQueries: QueryResolvers = {
   fetchItems: async (parent, { data }, ctx, info) =>

@@ -4,10 +4,10 @@ import { GraphQLServer, Options } from 'graphql-yoga'
 import cookieParser from 'cookie-parser'
 import { verify } from 'jsonwebtoken'
 
-import { Request } from './utils/types'
+import { Request } from '@utils/types'
 
-import * as resolvers from './resolvers'
-import db from './lib/db'
+import * as resolvers from '@resolvers'
+import db from '@lib/db'
 
 const server = new GraphQLServer({
   typeDefs: 'src/schemas/schema.graphql',

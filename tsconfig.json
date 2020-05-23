@@ -10,6 +10,13 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
+    "baseUrl": "./",
+    "paths": {
+      "@generated/*": ["./src/generated/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@resolvers": ["./src/resolvers/"],
+      "@utils/*": ["./src/utils/*"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }

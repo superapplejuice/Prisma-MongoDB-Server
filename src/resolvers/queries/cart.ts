@@ -1,6 +1,6 @@
 import { QueryResolvers } from '../types'
 
-import { REQUIRE_AUTH } from '../../utils/messages'
+import { REQUIRE_AUTH } from '@utils/messages'
 
 const CartQueries: QueryResolvers = {
   fetchCart: async (parent, args, ctx, info) => {

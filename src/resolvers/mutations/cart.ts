@@ -1,7 +1,7 @@
 import { MutationResolvers } from '../types'
 
-import { REQUIRE_AUTH } from '../../utils/messages'
-import { cartResolveInfo } from '../../utils/connect'
+import { REQUIRE_AUTH } from '@utils/messages'
+import { cartResolveInfo } from '@utils/connect'
 
 const CartMutations: MutationResolvers = {
   addToCart: async (parent, { id }, ctx, info) => {

@@ -2,7 +2,7 @@ import Stripe from 'stripe'
 
 import { MutationResolvers } from '../types'
 
-import { createAlert } from '../../utils/functions'
+import { createAlert } from '@utils/functions'
 
 const stripe = new Stripe(process.env.STRIPE_SKEY, {
   apiVersion: '2020-03-02',

@@ -4,14 +4,14 @@ import { sign } from 'jsonwebtoken'
 import { CookieOptions } from 'express'
 import { MutationResolvers } from '../types'
 
-import { usernameRegex, passwordRegex } from '../../utils/regex'
+import { usernameRegex, passwordRegex } from '@utils/regex'
 import {
   INVALID_USERNAME,
   INVALID_PASSWORD,
   WRONG_CREDENTIALS,
   REQUIRE_AUTH,
-} from '../../utils/messages'
-import { createAlert } from '../../utils/functions'
+} from '@utils/messages'
+import { createAlert } from '@utils/functions'
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
