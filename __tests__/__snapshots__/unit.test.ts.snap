@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Resolvers: Registration, Login and Logout A new user should be registered 1`] = `
+Object {
+  "cart": Array [],
+  "email": "test@gmail.com",
+  "id": "5eca2d88e03dd80008794953",
+  "items": Array [],
+  "joined": "2020-05-24T08:17:12.696Z",
+  "password": "$2a$12$1aBg2eN1j.bhb3/Yc8JSVeMj3WVLhnItWi7G9yFauJBKuBRxbo69a",
+  "username": "testuser",
+}
+`;

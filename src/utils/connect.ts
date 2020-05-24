@@ -23,4 +23,20 @@ export const cartResolveInfo = `
       id
     }
   }
-`
+` as const
+
+export const userResolveInfo = `
+  {
+    id
+    username
+    email
+    password
+    joined
+    items {
+      id
+    }
+    cart {
+      id
+    }
+  }
+` as const

@@ -19,7 +19,8 @@
     "commit": "npx git-cz",
     "prisma": "sh prisma.sh",
     "codegen": "graphql-codegen --config codegen.yml",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "jest unit.test --updateSnapshot"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.13.5",
