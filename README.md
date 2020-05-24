@@ -1,6 +1,6 @@
 # Prisma MongoDB Server
 
-This is a GraphQL server running on a Prisma client, with MongoDB as the database.
+This is a GraphQL server running on a Prisma client, with MongoDB running locally as the database. This repo is mostly just for fun, and to play around with.
 
 ## Features
 
@@ -10,8 +10,7 @@ This is a GraphQL server running on a Prisma client, with MongoDB as the databas
 - Items
   - Create/read/update/delete items
 - Cart
-  - Add to cart
-  - Remove from cart
+  - Add to/remove from cart
   - Clear entire cart
 - Single payments with [Stripe](https://stripe.com)
   - This requires a client application
@@ -20,8 +19,9 @@ This is a GraphQL server running on a Prisma client, with MongoDB as the databas
 
 ### Next feature(s) to add:
 
-- Expanded unit tests
+- Expanded unit and integration tests
 - Deployment
+- User roles (e.g. admin, normal users, dedicated sellers)
 
 ## Setup
 
