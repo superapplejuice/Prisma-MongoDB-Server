@@ -15,10 +15,12 @@ This is a GraphQL server running on a Prisma client, with MongoDB as the databas
   - Clear entire cart
 - Single payments with [Stripe](https://stripe.com)
   - This requires a client application
+- Unit Tests
+  - Only on User resolvers
 
 ### Next feature(s) to add:
 
-- Testing
+- Expanded unit tests
 - Deployment
 
 ## Setup
@@ -58,3 +60,7 @@ STRIPE_SKEY=<your_stripe_secret_key>
 6. ???
 
 7. Profit
+
+## Other commands
+
+- Run `yarn test` to run unit tests.
