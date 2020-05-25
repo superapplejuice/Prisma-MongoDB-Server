@@ -24,7 +24,13 @@ const userTests = () => {
       resolveInfo
     )
 
-  afterEach(async () => await db.mutation.deleteManyUsers({}))
+  // clear test data after each test
+  afterEach(
+    async () =>
+      await db.mutation.deleteManyUsers({
+        where: { username_contains: 'test' },
+      })
+  )
 
   it('A new user should be registered', async () => {
     await expect(registerUser(mockRegisterData)).resolves.toMatchSnapshot()

@@ -4,10 +4,10 @@ exports[`User Resolvers: Registration, Login and Logout A new user should be reg
 Object {
   "cart": Array [],
   "email": "test@gmail.com",
-  "id": "5eca2d88e03dd80008794953",
+  "id": "5ecba0b6e03dd8000775978f",
   "items": Array [],
-  "joined": "2020-05-24T08:17:12.696Z",
-  "password": "$2a$12$1aBg2eN1j.bhb3/Yc8JSVeMj3WVLhnItWi7G9yFauJBKuBRxbo69a",
+  "joined": "2020-05-25T10:40:54.335Z",
+  "password": "$2a$12$xC8sgQNFtqjJ3pHaM5O5HupCY39e7koEfaTs6FX4yMKpbclVUK/Zm",
   "username": "testuser",
 }
 `;
