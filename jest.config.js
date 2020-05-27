@@ -10,9 +10,4 @@ module.exports = {
     prefix: '<rootDir>/',
   }),
   setupFiles: ['dotenv/config'],
-  globals: {
-    'ts-jest': {
-      babelConfig: true,
-    },
-  },
 }
