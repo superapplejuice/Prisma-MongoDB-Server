@@ -66,19 +66,19 @@ const UserMutations: MutationResolvers = {
 
     const parsedEmail = parseString(email)
 
-    const existingEmail = await ctx.db.query.user({
+    const existingUser = await ctx.db.query.user({
       where: { email: parsedEmail },
     })
-    const correctPassword = await compare(password, existingEmail.password)
+    const correctPassword = await compare(password, existingUser.password)
 
-    if (!existingEmail || !correctPassword) {
+    if (!existingUser || !correctPassword) {
       throw new Error(WRONG_CREDENTIALS)
     }
 
-    const token = sign({ userId: existingEmail.id }, process.env.APP_SECRET)
+    const token = sign({ userId: existingUser.id }, process.env.APP_SECRET)
     ctx.response.cookie('token', token, cookieOptions)
 
-    return existingEmail
+    return existingUser
   },
   logoutUser: (parent, args, ctx) => {
     if (!ctx.request.userId) {
