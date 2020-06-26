@@ -26,7 +26,7 @@ server.express.use((req: Request, res, next) => {
 })
 
 const options: Options = {
-  cors: { credentials: true },
+  cors: { credentials: true, origin: process.env.CLIENT_ENDPOINT },
   endpoint: '/graphql',
   playground: '/playground',
 }
